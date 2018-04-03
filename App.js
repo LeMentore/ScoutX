@@ -2,25 +2,39 @@ import React, { Component } from 'react';
 import { StyleSheet, Text, View, TextInput, Button } from 'react-native';
 
 export default class App extends Component {
-  state = {
-    placeName: ''
-  }
+    state = {
+        placeName: '',
+        places: []
+    }
 
-  placeNameChangedHandler = value => {
-    this.setState({placeName: value})
-  }
+    placeNameChangedHandler = value => {
+        this.setState({placeName: value})
+    }
 
-  render() {
-    return (
-      <View style={styles.container}>
-          <View style={styles.inputContainer}>
-              <TextInput value={this.state.placeName} onChangeText={this.placeNameChangedHandler}
-                         style={styles.placeInput} placeholder='An awesome place'/>
-              <Button title='Add' style={styles.placeButton}/>
-          </View>
-      </View>
-    );
-  }
+    placeSubmitHandler = () => {
+        if(this.state.placeName.trim() === '') return
+        this.setState(prevState => {
+            return {
+                places: [prevState.placeName, ...prevState.places]
+            }
+        })
+    }
+
+    render() {
+        const placesOutput = this.state.places.map((place, index) => (<Text key={index}>{place}</Text>) )
+        return (
+            <View style={styles.container}>
+                <View style={styles.inputContainer}>
+                    <TextInput value={this.state.placeName} onChangeText={this.placeNameChangedHandler}
+                               style={styles.placeInput} placeholder='An awesome place'/>
+                    <Button title='Add' style={styles.placeButton} onPress={this.placeSubmitHandler}/>
+                </View>
+                <View>
+                    {placesOutput}
+                </View>
+            </View>
+        );
+    }
 }
 
 const styles = StyleSheet.create({
