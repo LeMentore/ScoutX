@@ -1,5 +1,5 @@
-import React, {Component} from 'react';
-import {View, TextInput, Button, StyleSheet} from 'react-native';
+import React, {Component} from 'react'
+import {View, TextInput, Button, StyleSheet} from 'react-native'
 
 class PlaceInput extends Component {
     state = {
@@ -38,16 +38,16 @@ class PlaceInput extends Component {
 
 const styles = StyleSheet.create({
     inputContainer: {
-        width: "100%",
-        flexDirection: "row",
-        justifyContent: "space-between",
-        alignItems: "center"
+        width: '100%',
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center'
     },
     placeInput: {
-        width: "70%"
+        width: '70%'
     },
     placeButton: {
-        width: "30%"
+        width: '30%'
     }
 });
 

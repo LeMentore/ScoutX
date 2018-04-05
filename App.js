@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
-import { StyleSheet, Text, View, TextInput, Button } from 'react-native'
+import { StyleSheet, View } from 'react-native'
 
-import PlaceInput from './src/components/PlaceInput/PlaceInput';
-import PlaceList from './src/components/PlaceList/PlaceList';
+import PlaceInput from './src/components/PlaceInput/PlaceInput'
+import PlaceList from './src/components/PlaceList/PlaceList'
 
 export default class App extends Component {
     state = {
