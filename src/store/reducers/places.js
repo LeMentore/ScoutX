@@ -5,7 +5,7 @@ const initialState = {
     selectedPlace: null
 };
 
-const reducer = (state = initialState, action) => {
+const placesReducer = (state = initialState, action) => {
     switch(action.type){
         case ADD_PLACE:
             return {
@@ -13,7 +13,7 @@ const reducer = (state = initialState, action) => {
                 places: [{
                     key: Date.now().toString(),
                     name: action.placeName,
-                    image: { uri: 'https://image.freepik.com/free-photo/shiny-night-city_1127-8.jpg'}
+                    image: { uri: 'https://image.freepik.com/free-photo/shiny-night-city_1127-8.jpg' }
                 },
                     ...state.places]
             };
@@ -22,7 +22,7 @@ const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 places: state.places.filter(place => {
-                    return place.key !== state.selectedPlace.key
+                    return place.key !== state.selectedPlace.key;
                 }),
                 selectedPlace: null
             };
@@ -46,4 +46,4 @@ const reducer = (state = initialState, action) => {
     }
 };
 
-export default reducer
+export default placesReducer
