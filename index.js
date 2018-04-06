@@ -1,4 +1,15 @@
-import { AppRegistry } from 'react-native';
-import App from './App';
+import { AppRegistry } from 'react-native'
+import { Provider } from 'react-redux'
 
-AppRegistry.registerComponent('ScoutX', () => App);
+import configureStore from './src/store/configureStore'
+import App from './App'
+
+const store = configureStore();
+
+const ReactNativeRedux = () => (
+    <Provider store={store}>
+        <App />
+    </Provider>
+);
+
+AppRegistry.registerComponent('ScoutX', () => ReactNativeRedux);
