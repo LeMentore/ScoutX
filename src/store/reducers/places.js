@@ -31,7 +31,7 @@ const placesReducer = (state = initialState, action) => {
             return {
                 ...state,
                 selectedPlace: state.places.find(place => {
-                    return place.key === action.key
+                    return place.key === action.placeKey
                 })
             };
 
