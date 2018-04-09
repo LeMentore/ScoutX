@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
-import { View, Text } from 'react-native'
+import { View } from 'react-native'
 import { connect } from 'react-redux'
 
 import PlaceInput from '../../components/PlaceInput/PlaceInput'
-import { addPlace } from "../../store/actions/places";
+import { addPlace } from "../../store/actions/places"
 
 class SharePlaceScreen extends Component {
     placeAddedHandler = placeName => {

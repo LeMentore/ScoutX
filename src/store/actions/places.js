@@ -5,11 +5,11 @@ export const addPlace = placeName => {
         type: ADD_PLACE,
         placeName: placeName
     }
-};
+}
 
 export const deletePlace = key => {
     return {
         type: DELETE_PLACE,
         placeKey: key
     }
-};
+}

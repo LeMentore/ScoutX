@@ -7,7 +7,7 @@ import FindPlaceScreen from './src/screens/FindPlace/FindPlace'
 import PlaceDetailScreen from './src/screens/PlaceDetail/PlaceDetail'
 import configureStore from './src/store/configureStore'
 
-const store = configureStore();
+const store = configureStore()
 
 // Register Screens
 Navigation.registerComponent('scout-x.AuthScreen', () => AuthScreen, store, Provider)

@@ -26,4 +26,4 @@ const startTabs = () => {
     })
 }
 
-export default startTabs;
+export default startTabs

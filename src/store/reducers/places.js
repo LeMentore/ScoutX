@@ -2,7 +2,7 @@ import { ADD_PLACE, DELETE_PLACE } from '../actions/actionTypes'
 
 const initialState = {
     places: []
-};
+}
 
 const placesReducer = (state = initialState, action) => {
     switch(action.type){
@@ -15,7 +15,7 @@ const placesReducer = (state = initialState, action) => {
                     image: { uri: 'https://image.freepik.com/free-photo/shiny-night-city_1127-8.jpg' }
                 },
                     ...state.places]
-            };
+            }
 
         case DELETE_PLACE:
             return {
@@ -23,11 +23,11 @@ const placesReducer = (state = initialState, action) => {
                 places: state.places.filter(place => {
                     return place.key !== action.placeKey;
                 })
-            };
+            }
 
         default:
             return state
     }
-};
+}
 
 export default placesReducer

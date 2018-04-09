@@ -4,18 +4,18 @@ import { View, TextInput, Button, StyleSheet } from 'react-native'
 class PlaceInput extends Component {
     state = {
         placeName: ''
-    };
+    }
 
     placeNameChangedHandler = value => {
         this.setState({
             placeName: value
-        });
-    };
+        })
+    }
 
     placeSubmitHandler = () => {
-        if (this.state.placeName.trim() === '') return;
-        this.props.onPlaceAdded(this.state.placeName);
-    };
+        if (this.state.placeName.trim() === '') return
+        this.props.onPlaceAdded(this.state.placeName)
+    }
 
     render() {
         return (
@@ -32,7 +32,7 @@ class PlaceInput extends Component {
                     onPress={this.placeSubmitHandler}
                 />
             </View>
-        );
+        )
     }
 }
 
@@ -49,6 +49,6 @@ const styles = StyleSheet.create({
     placeButton: {
         width: '30%'
     }
-});
+})
 
-export default PlaceInput;
+export default PlaceInput

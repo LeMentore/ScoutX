@@ -5,12 +5,12 @@ import { Provider } from 'react-redux'
 import App from './App'
 import configureStore from './src/store/configureStore'
 
-const store = configureStore();
+const store = configureStore()
 
 const ReactNativeRedux = () => (
     <Provider store={store}>
         <App />
     </Provider>
-);
+)
 
-AppRegistry.registerComponent('ScoutX', () => ReactNativeRedux);
+AppRegistry.registerComponent('ScoutX', () => ReactNativeRedux)

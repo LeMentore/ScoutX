@@ -8,7 +8,7 @@ import { deletePlace } from '../../store/actions/places'
 class PlaceDetail extends Component {
 
     placeDeletedHandler = () => {
-        this.props.onDeletePlace(this.props.selectedPlace.key)
+        this.props.onDeletePlace(this.props.selectedPlace.key);
         this.props.navigator.pop()
     }
 
