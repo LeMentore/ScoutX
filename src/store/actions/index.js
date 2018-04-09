@@ -1,2 +1,2 @@
-import { addPlace, deletePlace, selectPlace, deselectPlace } from './places'
+import { addPlace, deletePlace } from './places'
 
