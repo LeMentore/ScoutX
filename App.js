@@ -13,7 +13,7 @@ const store = configureStore();
 Navigation.registerComponent('scout-x.AuthScreen', () => AuthScreen, store, Provider)
 Navigation.registerComponent('scout-x.SharePlaceScreen', () => SharePlaceScreen, store, Provider)
 Navigation.registerComponent('scout-x.FindPlaceScreen', () => FindPlaceScreen, store, Provider)
-Navigation.registerComponent('scout-x.PlaceDetailScreen', () => PlaceDetailScreen)
+Navigation.registerComponent('scout-x.PlaceDetailScreen', () => PlaceDetailScreen, store, Provider)
 
 // Start App
 Navigation.startSingleScreenApp({
