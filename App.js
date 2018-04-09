@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 import PlaceInput from './src/components/PlaceInput/PlaceInput'
 import PlaceList from './src/components/PlaceList/PlaceList'
 import PlaceDetail from './src/components/PlaceDetail/PlaceDetail'
-import { addPlace, deletePlace, selectPlace, deselectPlace } from "./src/store/actions/places";
+import { addPlace, deletePlace, selectPlace, deselectPlace } from './src/store/actions/places'
 
 class App extends Component {
 
@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
         padding: 26,
         justifyContent: 'flex-start',
         alignItems: 'center',
-        backgroundColor: '#F5FCFF',
+        backgroundColor: '#F5FCFF'
     }
 });
 
@@ -55,9 +55,9 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        onAddPlace: (name) => dispatch(addPlace(name)),
+        onAddPlace: name => dispatch(addPlace(name)),
         onDeletePlace: () => dispatch(deletePlace()),
-        onSelectPlace: (key) => dispatch(selectPlace(key)),
+        onSelectPlace: key => dispatch(selectPlace(key)),
         onDeselectPlace: () => dispatch(deselectPlace())
     }
 };
