@@ -1,7 +1,7 @@
 import React from  'react'
 import { TextInput, StyleSheet } from 'react-native'
 
-const DefaultInput = props => (
+const defaultInput = props => (
     <TextInput underlineColorAndroid="transparent"
                {...props}
                style={[styles.input, props.style]}
@@ -18,4 +18,4 @@ const styles = StyleSheet.create({
     }
 })
 
-export default DefaultInput
+export default defaultInput
