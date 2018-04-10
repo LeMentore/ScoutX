@@ -3,10 +3,11 @@ import { View, Text, Button, StyleSheet, ScrollView, Image } from 'react-native'
 import { connect } from 'react-redux'
 
 import { addPlace } from "../../store/actions/places"
-import DefaultInput from '../../components/UI/DefaultInput/DefaultInput'
 import MainText from '../../components/UI/MainText/MainText'
 import HeadingText from '../../components/UI/HeadingText/HeadingText'
-import ImagePlaceholder from '../../assets/place.jpg'
+import PlaceInput from '../../components/PlaceInput/PlaceInput'
+import PickImage from '../../components/PickImage/PickImage'
+import PickLocation from '../../components/PickLocation/PickLocation'
 
 class SharePlaceScreen extends Component {
     constructor(props){
@@ -35,21 +36,13 @@ class SharePlaceScreen extends Component {
                     <MainText>
                         <HeadingText style={{color: '#000'}}>Share place with us!</HeadingText>
                     </MainText>
-                    <View style={styles.placeholder}>
-                        <Image source={ImagePlaceholder} style={styles.previewImage}/>
-                    </View>
+
+                    <PickImage />
+                    <PickLocation />
+                    <PlaceInput />
+
                     <View style={styles.button}>
-                        <Button title="Pick Image" />
-                    </View>
-                    <View style={styles.placeholder}>
-                        <Text>Map</Text>
-                    </View>
-                    <View style={styles.button}>
-                        <Button title="Locate Me" />
-                    </View>
-                    <DefaultInput placeholder="Place Name" />
-                    <View style={styles.button}>
-                        <Button title="Share the place" />
+                        <Button title="Share the place" onPress={() => alert('Ты пидор!')} />
                     </View>
                 </View>
             </ScrollView>
@@ -62,19 +55,8 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: 'center'
     },
-    placeholder: {
-        borderWidth: 1,
-        borderColor: '#000',
-        backgroundColor: '#eee',
-        width: '80%',
-        height: 150
-    },
     button: {
         margin: 8
-    },
-    previewImage: {
-        width: '100%',
-        height: '100%'
     }
 })
 
