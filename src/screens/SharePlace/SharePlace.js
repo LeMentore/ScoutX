@@ -6,6 +6,7 @@ import PlaceInput from '../../components/PlaceInput/PlaceInput'
 import { addPlace } from "../../store/actions/places"
 
 class SharePlaceScreen extends Component {
+
     placeAddedHandler = placeName => {
         this.props.onAddPlace(placeName)
     }
