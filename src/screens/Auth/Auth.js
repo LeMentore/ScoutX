@@ -10,6 +10,27 @@ import backgroundImage from '../../assets/background.jpg'
 
 class AuthScreen extends Component {
 
+    state = {
+        responsive: {
+            containerDirection: 'column',
+            containerJustifyContent: 'flex-start',
+            wrapperWidth: '100%'
+        }
+    }
+
+    constructor(props){
+        super(props)
+        Dimensions.addEventListener('change', () => {
+            this.setState({
+                responsive: {
+                    containerDirection: Dimensions.get('window').height > 500 ? 'column' : 'row',
+                    containerJustifyContent: Dimensions.get('window').height > 500 ? 'flex-start' : 'space-between',
+                    wrapperWidth: Dimensions.get('window').height > 500 ? '100%' : '48%'
+                }
+            })
+        })
+    }
+
     loginHandler = () => {
         startMainTabs()
     }
@@ -30,9 +51,12 @@ class AuthScreen extends Component {
                     <ButtonWithBackground color="#29aaf4" onPress={() => alert('Ты пидор!')}>Switch To Login</ButtonWithBackground>
                     <View style={styles.inputContainer}>
                         <DefaultInput placeholder="Your Email" style={styles.input}/>
-                        <View style={styles.passwordContainer}>
-                            <View style={styles.passwordWrapper}><DefaultInput placeholder="Password" style={styles.input}/></View>
-                            <View style={styles.passwordWrapper}><DefaultInput placeholder="Confirm Password" style={styles.input}/></View>
+                        <View style={{
+                            flexDirection: this.state.responsive.containerDirection,
+                            justifyContent: this.state.responsive.containerJustifyContent
+                        }}>
+                            <View style={{width: this.state.responsive.wrapperWidth}}><DefaultInput placeholder="Password" style={styles.input}/></View>
+                            <View style={{width: this.state.responsive.wrapperWidth}}><DefaultInput placeholder="Confirm Password" style={styles.input}/></View>
                         </View>
                     </View>
                     <ButtonWithBackground color="#29aaf4" onPress={this.loginHandler}>Submit</ButtonWithBackground>
