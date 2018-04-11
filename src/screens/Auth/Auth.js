@@ -11,15 +11,21 @@ import backgroundImage from '../../assets/background.jpg'
 class AuthScreen extends Component {
     constructor(props){
         super(props)
-        Dimensions.addEventListener('change', () => {
-            this.setState({
-                viewMode: Dimensions.get('window').height > 500 ? 'portrait' : 'landscape'
-            })
-        })
+        Dimensions.addEventListener('change', this.updateStyles)
     }
 
     state = {
         viewMode: Dimensions.get('window').height > 500 ? 'portrait' : 'landscape'
+    }
+
+    componentWillUnmount(){
+        Dimensions.removeEventListener('change', this.updateStyles)
+    }
+
+    updateStyles = dimension => {
+        this.setState({
+            viewMode: dimension.window.height > 500 ? 'portrait' : 'landscape'
+        })
     }
 
     loginHandler = () => {
