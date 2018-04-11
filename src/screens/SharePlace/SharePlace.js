@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, Text, Button, StyleSheet, ScrollView, Image } from 'react-native'
+import { View, Button, StyleSheet, ScrollView } from 'react-native'
 import { connect } from 'react-redux'
 
 import { addPlace } from "../../store/actions/places"
@@ -10,13 +10,13 @@ import PickImage from '../../components/PickImage/PickImage'
 import PickLocation from '../../components/PickLocation/PickLocation'
 
 class SharePlaceScreen extends Component {
-    state = {
-        placeName: ''
-    }
-
     constructor(props){
         super(props)
         this.props.navigator.setOnNavigatorEvent(this.onNavigatorEvent)
+    }
+
+    state = {
+        placeName: ''
     }
 
     onNavigatorEvent = event => {
@@ -45,7 +45,7 @@ class SharePlaceScreen extends Component {
             <ScrollView>
                 <View style={styles.container}>
                     <MainText>
-                        <HeadingText style={{color: '#000'}}>Share place with us!</HeadingText>
+                        <HeadingText style={styles.header}>Share place with us!</HeadingText>
                     </MainText>
 
                     <PickImage />
@@ -68,6 +68,9 @@ const styles = StyleSheet.create({
     },
     button: {
         margin: 8
+    },
+    header: {
+        color: '#000'
     }
 })
 
