@@ -42,6 +42,12 @@ const startTabs = () => {
                     }
                 }
             ],
+            tabsStyle: {
+                tabBarSelectedButtonColor: '#1289c5'
+            },
+            appStyle: {
+                tabBarSelectedButtonColor: '#1289c5'
+            },
             drawer: {
                 left: {
                     screen: 'scout-x.SideDrawer'
