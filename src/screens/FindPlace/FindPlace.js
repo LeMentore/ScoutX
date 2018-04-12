@@ -35,8 +35,8 @@ class FindPlaceScreen extends Component {
             toValue: 1,
             duration: 500,
             useNativeDriver: true
-        }).start();
-    };
+        }).start()
+    }
 
     placesSearchHandler = () => {
         Animated.timing(this.state.removeAnimation, {
@@ -46,8 +46,8 @@ class FindPlaceScreen extends Component {
         }).start(() => {
             this.setState({
                 placesLoaded: true
-            });
-            this.placesLoadedHandler();
+            })
+            this.placesLoadedHandler()
         })
     }
 
@@ -72,9 +72,10 @@ class FindPlaceScreen extends Component {
                     {
                         scale: this.state.removeAnimation.interpolate({
                             inputRange: [0, 1],
-                            outputRange: [12, 1]
+                            outputRange: [30, 1]
                         })
-                    }]
+                    }
+                ]
             }}>
                 <TouchableOpacity onPress={this.placesSearchHandler}>
                     <View style={styles.searchButton}>
@@ -90,7 +91,7 @@ class FindPlaceScreen extends Component {
                 </Animated.View>
             )
         }
-        return <View style={!this.state.placesLoaded && styles.buttonContainer}>{content}</View>
+        return <View style={this.state.placesLoaded ? null : styles.buttonContainer}>{content}</View>
     }
 }
 
@@ -102,7 +103,7 @@ const styles = StyleSheet.create({
     },
     searchButton: {
         borderColor: '#1289c5',
-        borderWidth: 3,
+        borderWidth: 2,
         borderRadius: 50,
         padding: 20
     },
