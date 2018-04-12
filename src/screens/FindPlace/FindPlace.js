@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native'
+import { View, Text, TouchableOpacity, StyleSheet, Animated } from 'react-native'
 import { connect } from 'react-redux'
 
 import PlaceList from '../../components/PlaceList/PlaceList'
@@ -11,7 +11,8 @@ class FindPlaceScreen extends Component {
     }
 
     state = {
-        placesLoaded: false
+        placesLoaded: false,
+        removeAnimation: new Animated.Value(1)
     }
 
     static navigatorStyle = {
@@ -29,8 +30,15 @@ class FindPlaceScreen extends Component {
     }
 
     placesSearchHandler = () => {
-        this.setState({
-            placesLoaded: true
+        Animated.timing(this.state.removeAnimation, {
+            toValue: 0,
+            duration: 5000,
+            useNativeDriver: true
+        }).start(() => {
+            this.setState({
+                placesLoaded: true
+            });
+            //this.placesLoadedHandler();
         })
     }
 
@@ -49,11 +57,22 @@ class FindPlaceScreen extends Component {
 
     render(){
         let content = (
-            <TouchableOpacity onPress={this.placesSearchHandler}>
-                <View style={styles.searchButton}>
-                    <Text style={styles.searchButtonText}>Find Places</Text>
-                </View>
-            </TouchableOpacity>
+            <Animated.View style={{
+                opacity: this.state.removeAnimation,
+                transform: [
+                    {
+                        scale: this.state.removeAnimation.interpolate({
+                            inputRange: [0, 1],
+                            outputRange: [12, 1]
+                        })
+                    }]
+            }}>
+                <TouchableOpacity onPress={this.placesSearchHandler}>
+                    <View style={styles.searchButton}>
+                        <Text style={styles.searchButtonText}>Find Places</Text>
+                    </View>
+                </TouchableOpacity>
+            </Animated.View>
         )
         if(this.state.placesLoaded){
             content = (<PlaceList places={this.props.places} onItemSelected={this.itemSelectedHandler} />)
@@ -67,9 +86,6 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center'
-    },
-    listContainer: {
-
     },
     searchButton: {
         borderColor: '#1289c5',
