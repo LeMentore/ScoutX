@@ -12,7 +12,8 @@ class FindPlaceScreen extends Component {
 
     state = {
         placesLoaded: false,
-        removeAnimation: new Animated.Value(1)
+        removeAnimation: new Animated.Value(1),
+        placesAnimation: new Animated.Value(0)
     }
 
     static navigatorStyle = {
@@ -29,16 +30,24 @@ class FindPlaceScreen extends Component {
         }
     }
 
+    placesLoadedHandler = () => {
+        Animated.timing(this.state.placesAnimation, {
+            toValue: 1,
+            duration: 500,
+            useNativeDriver: true
+        }).start();
+    };
+
     placesSearchHandler = () => {
         Animated.timing(this.state.removeAnimation, {
             toValue: 0,
-            duration: 5000,
+            duration: 500,
             useNativeDriver: true
         }).start(() => {
             this.setState({
                 placesLoaded: true
             });
-            //this.placesLoadedHandler();
+            this.placesLoadedHandler();
         })
     }
 
@@ -74,8 +83,12 @@ class FindPlaceScreen extends Component {
                 </TouchableOpacity>
             </Animated.View>
         )
-        if(this.state.placesLoaded){
-            content = (<PlaceList places={this.props.places} onItemSelected={this.itemSelectedHandler} />)
+        if (this.state.placesLoaded) {
+            content = (
+                <Animated.View style={{opacity: this.state.placesAnimation}}>
+                    <PlaceList places={this.props.places} onItemSelected={this.itemSelectedHandler}/>
+                </Animated.View>
+            )
         }
         return <View style={!this.state.placesLoaded && styles.buttonContainer}>{content}</View>
     }
