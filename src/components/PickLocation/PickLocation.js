@@ -12,10 +12,26 @@ class PickLocation extends Component {
         }
     }
 
+    pickLocationHandler = event => {
+        const coordinates = event.nativeEvent.coordinate
+        this.setState(prevState => {
+            return {
+                focusedLocation: {
+                    ...prevState.focusedLocation,
+                    latitude: coordinates.latitude,
+                    longitude: coordinates.longitude
+                }
+            }
+        })
+    }
+
     render() {
         return (
             <View style={styles.container}>
-                <MapView initialRegion={this.state.focusedLocation} style={styles.map} />
+                <MapView initialRegion={this.state.focusedLocation}
+                         region={this.state.focusedLocation}
+                         onPress={this.pickLocationHandler} style={styles.map}
+                />
                 <View style={styles.button}>
                     <Button title="Locate Me" onPress={() => alert('Ты пидор!')} />
                 </View>
