@@ -12,7 +12,8 @@ const placesReducer = (state = initialState, action) => {
                 places: [{
                     key: Date.now().toString(),
                     name: action.placeName,
-                    image: { uri: 'https://image.freepik.com/free-photo/shiny-night-city_1127-8.jpg' }
+                    image: { uri: 'https://image.freepik.com/free-photo/shiny-night-city_1127-8.jpg' },
+                    location: action.location
                 },
                     ...state.places]
             }
