@@ -17,6 +17,7 @@ class PickImage extends Component {
                 this.setState({
                     pickedImage: { uri: response.uri }
                 })
+                this.props.onImagePicked({uri: response.uri})
             }
         })
     }
