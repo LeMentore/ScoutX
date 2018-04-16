@@ -8,7 +8,7 @@ class PickImage extends Component {
     }
 
     pickImageHandler = () => {
-        ImagePicker.showImagePicker({title: 'Pick an Image'}, response => {
+        ImagePicker.showImagePicker({title: 'Pick an Image', noData: true}, response => {
             if(response.didCancel){
                 console.log('User canceled!')
             } else if(response.error){
@@ -17,7 +17,7 @@ class PickImage extends Component {
                 this.setState({
                     pickedImage: { uri: response.uri }
                 })
-                this.props.onImagePicked({uri: response.uri})
+                this.props.onImagePicked({uri: response.uri, base64: response.data})
             }
         })
     }
