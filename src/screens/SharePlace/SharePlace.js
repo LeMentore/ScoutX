@@ -130,13 +130,21 @@ class SharePlaceScreen extends Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        alignItems: 'center'
+        alignItems: "center"
+    },
+    placeholder: {
+        borderWidth: 1,
+        borderColor: "black",
+        backgroundColor: "#eee",
+        width: "80%",
+        height: 150
     },
     button: {
         margin: 8
     },
-    header: {
-        color: '#000'
+    previewImage: {
+        width: "100%",
+        height: "100%"
     }
 })
 
