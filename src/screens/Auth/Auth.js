@@ -14,8 +14,6 @@ import { tryAuth } from '../../store/actions/auth'
 class AuthScreen extends Component {
     constructor(props){
         super(props)
-
-
         Dimensions.addEventListener('change', this.updateStyles)
     }
 
