@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, Button, Text, StyleSheet, ScrollView } from 'react-native'
+import { View, Button, Text, StyleSheet, ScrollView, ActivityIndicator } from 'react-native'
 import { connect } from 'react-redux'
 
 import { addPlace } from "../../store/actions/places"
@@ -112,7 +112,7 @@ class SharePlaceScreen extends Component {
         )
 
         if (this.props.isLoading){
-            submitButton = <Text>Loading</Text>
+            submitButton = <ActivityIndicator />
         }
         return(
             <ScrollView>

@@ -12,6 +12,7 @@ export const addPlace = (placeName, location, image) => {
         })
             .catch(error => {
                 console.log(error)
+                alert('Something went wrong... Please try again')
                 dispatch(uiCompleteLoading())
             })
             .then(response => response.json())
@@ -28,6 +29,7 @@ export const addPlace = (placeName, location, image) => {
             })
             .catch(error => {
                 console.log(error)
+                alert('Something went wrong... Please try again')
                 dispatch(uiCompleteLoading())
             })
             .then(response => response.json())
