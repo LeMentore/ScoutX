@@ -3,7 +3,7 @@ import { View, Text, TouchableOpacity, StyleSheet, Animated } from 'react-native
 import { connect } from 'react-redux'
 
 import PlaceList from '../../components/PlaceList/PlaceList'
-import { getPlaces } from '../../store/actions/places';
+import { getPlaces } from '../../store/actions/places'
 
 class FindPlaceScreen extends Component {
     constructor(props){

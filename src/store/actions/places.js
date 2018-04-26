@@ -56,7 +56,7 @@ export const getPlaces = () => {
                         image: {
                             uri: parsedResponse[key].image
                         },
-                        id: key
+                        key: key
                     })
                 }
                 dispatch(setPlaces(places))

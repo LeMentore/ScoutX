@@ -7,10 +7,10 @@ import configureStore from './src/store/configureStore'
 
 const store = configureStore()
 
-const ReactNativeRedux = () => (
+const Main = () => (
     <Provider store={store}>
         <App />
     </Provider>
 )
 
-AppRegistry.registerComponent('ScoutX', () => ReactNativeRedux)
+AppRegistry.registerComponent('ScoutX', () => Main)
