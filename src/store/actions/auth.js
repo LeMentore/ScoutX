@@ -2,9 +2,13 @@ import { TRY_AUTH } from './actionTypes'
 import { uiStartLoading, uiCompleteLoading } from './ui'
 import startMainTabs from '../../screens/MainTabs/startMainTabs'
 
-export const tryAuth = authData => {
+export const tryAuth = (authData, authMode) => {
     return dispatch => {
-        dispatch(authSignUp(authData))
+        if(authMode === 'login'){
+
+        } else {
+            dispatch(authSignUp(authData, authMode))
+        }
     }
 }
 
