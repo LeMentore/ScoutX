@@ -5,3 +5,5 @@ export const TRY_AUTH = 'TRY_AUTH'
 
 export const UI_START_LOADING = 'UI_START_LOADING'
 export const UI_COMPLETE_LOADING = 'UI_COMPLETE_LOADING'
+
+export const AUTH_SET_TOKEN = 'AUTH_SET_TOKEN'
