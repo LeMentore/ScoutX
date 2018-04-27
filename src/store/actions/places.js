@@ -1,15 +1,22 @@
 import { SET_PLACES, DELETE_PLACE } from './actionTypes'
 import { uiStartLoading, uiCompleteLoading } from './ui'
+import { authGetToken } from './auth'
 
 export const addPlace = (placeName, location, image) => {
     return dispatch => {
         dispatch(uiStartLoading())
-        fetch('https://us-central1-scoutx-1523612790305.cloudfunctions.net/storeImage', {
-            method: 'POST',
-            body: JSON.stringify({
-                image: image.base64
+        dispatch(authGetToken())
+            .catch(() => {
+                alert('No valid token found')
             })
-        })
+            .then(token => {
+                return fetch('https://us-central1-scoutx-1523612790305.cloudfunctions.net/storeImage', {
+                    method: 'POST',
+                    body: JSON.stringify({
+                        image: image.base64
+                    })
+                })
+            })
             .catch(error => {
                 console.log(error)
                 alert('Something went wrong... Please try again')
@@ -41,11 +48,14 @@ export const addPlace = (placeName, location, image) => {
 }
 
 export const getPlaces = () => {
-    return (dispatch, getState) => {
-        const token = getState().auth.token
-        if(!token) return
-
-        fetch(`https://scoutx-1523612790305.firebaseio.com/places.json?auth=${token}`)
+    return dispatch => {
+        dispatch(authGetToken())
+            .then(token => {
+                return fetch(`https://scoutx-1523612790305.firebaseio.com/places.json?auth=${token}`)
+            })
+            .catch(() => {
+                alert('No valid token found')
+            })
             .then(response => response.json())
             .then(parsedResponse => {
                 const places = []
@@ -76,10 +86,16 @@ export const setPlaces = places => {
 
 export const deletePlace = (key) => {
     return dispatch => {
-        dispatch(removePlace(key));
-        fetch("https://scoutx-1523612790305.firebaseio.com/places/" + key + ".json", {
-            method: "DELETE"
-        })
+        dispatch(authGetToken())
+            .catch(() => {
+                alert('No valid token found')
+            })
+            .then(token => {
+                dispatch(removePlace(key));
+                return fetch(`https://scoutx-1523612790305.firebaseio.com/places/${key}.json?auth=${token}`, {
+                    method: "DELETE"
+                })
+            })
             .then(response => response.json())
             .then(parsedResponse => {
                 console.log("Done!")
