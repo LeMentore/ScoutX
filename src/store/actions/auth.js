@@ -1,4 +1,4 @@
-import { TRY_AUTH, AUTH_SET_TOKEN } from './actionTypes'
+import { AUTH_SET_TOKEN } from './actionTypes'
 import { uiStartLoading, uiCompleteLoading } from './ui'
 import startMainTabs from '../../screens/MainTabs/startMainTabs'
 
