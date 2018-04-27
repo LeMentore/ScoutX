@@ -27,14 +27,14 @@ export const addPlace = (placeName, location, image) => {
                     body: JSON.stringify(placeData)
                 })
             })
-            .catch(error => {
-                console.log(error)
-                alert('Something went wrong... Please try again')
-                dispatch(uiCompleteLoading())
-            })
             .then(response => response.json())
             .then(parsedResponse => {
                 console.log(parsedResponse)
+                dispatch(uiCompleteLoading())
+            })
+            .catch(error => {
+                console.log(error)
+                alert('Something went wrong... Please try again')
                 dispatch(uiCompleteLoading())
             })
     }
@@ -43,10 +43,6 @@ export const addPlace = (placeName, location, image) => {
 export const getPlaces = () => {
     return dispatch => {
         fetch('https://scoutx-1523612790305.firebaseio.com/places.json')
-            .catch(error => {
-                alert('Something went wrong, sorry...')
-                console.log(error)
-            })
             .then(response => response.json())
             .then(parsedResponse => {
                 const places = []
@@ -60,6 +56,10 @@ export const getPlaces = () => {
                     })
                 }
                 dispatch(setPlaces(places))
+            })
+            .catch(error => {
+                alert('Something went wrong, sorry...')
+                console.log(error)
             })
     }
 }
@@ -77,13 +77,13 @@ export const deletePlace = (key) => {
         fetch("https://scoutx-1523612790305.firebaseio.com/places/" + key + ".json", {
             method: "DELETE"
         })
-            .catch(err => {
-                alert("Something went wrong, sorry...")
-                console.log(err);
-            })
             .then(response => response.json())
             .then(parsedResponse => {
                 console.log("Done!")
+            })
+            .catch(err => {
+                alert("Something went wrong, sorry...")
+                console.log(err);
             })
     }
 }
