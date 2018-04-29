@@ -65,6 +65,10 @@ export const authGetToken = () => {
                 AsyncStorage.getItem('ap:auth:token')
                     .catch(error => reject())
                     .then(tokenFromStorage => {
+                        if(!tokenFromStorage){
+                            reject()
+                            return
+                        }
                         dispatch(authSetToken(tokenFromStorage))
                         resolve(tokenFromStorage)
                     })
@@ -73,5 +77,15 @@ export const authGetToken = () => {
             }
         })
         return promise
+    }
+}
+
+export const authAutoSignIn = () => {
+    return dispatch => {
+        dispatch(authGetToken())
+            .then(token => {
+                startMainTabs()
+            })
+            .catch(error => console.log('failed to fetch token'))
     }
 }
