@@ -3,14 +3,15 @@ import { AUTH_SET_TOKEN } from './actionTypes'
 import { uiStartLoading, uiCompleteLoading } from './ui'
 import startMainTabs from '../../screens/MainTabs/startMainTabs'
 
+const API_KEY = 'AIzaSyA0594HwEhXIp2M7nsKYDfS1VjvTRocJeE'
+
 export const tryAuth = (authData, authMode) => {
     return dispatch => {
         dispatch(uiStartLoading())
-        const apiKey = 'AIzaSyA0594HwEhXIp2M7nsKYDfS1VjvTRocJeE'
-        let url = `https://www.googleapis.com/identitytoolkit/v3/relyingparty/verifyPassword?key=${apiKey}`
+        let url = `https://www.googleapis.com/identitytoolkit/v3/relyingparty/verifyPassword?key=${API_KEY}`
 
         if(authMode === 'signup'){
-            url = `https://www.googleapis.com/identitytoolkit/v3/relyingparty/signupNewUser?key=${apiKey}`
+            url = `https://www.googleapis.com/identitytoolkit/v3/relyingparty/signupNewUser?key=${API_KEY}`
         }
 
         fetch(url, {
@@ -35,7 +36,7 @@ export const tryAuth = (authData, authMode) => {
                 if(!parsedResponse.idToken){
                     alert('Auth failed. Try Again...')
                 } else {
-                    dispatch(authStoreToken(parsedResponse.idToken, parsedResponse.expiresIn))
+                    dispatch(authStoreToken(parsedResponse.idToken, parsedResponse.expiresIn, parsedResponse))
                     startMainTabs()
                 }
                 console.log(parsedResponse)
@@ -43,13 +44,14 @@ export const tryAuth = (authData, authMode) => {
     }
 }
 
-export const authStoreToken = (token, expiresIn) => {
+export const authStoreToken = (token, expiresIn, refreshToken) => {
     return dispatch => {
         dispatch(authSetToken(token))
         const now = new Date()
         const expiryDate = now.getTime() + expiresIn * 1000
         AsyncStorage.setItem('ap:auth:token', token)
         AsyncStorage.setItem('ap:auth:expiryDate', expiryDate.toString())
+        AsyncStorage.setItem('ap:auth:refreshToken', refreshToken)
     }
 }
 
@@ -91,10 +93,35 @@ export const authGetToken = () => {
                 resolve(token)
             }
         })
-        promise.catch(error => {
-            dispatch(authClearStorage())
+        return promise.catch(error => {
+            return AsyncStorage.getItem('ap:auth:refreshToken')
+                .then(refreshToken => {
+                    return fetch(`https://securetoken.googleapis.com/v1/token?key=${API_KEY}`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/x-www-form-urlencoded'
+                        },
+                        body: `grant_type=refresh_token&refresh_token=${refreshToken}`
+                    })
+                })
+                .then(response => response.json())
+                .then(parsedResponse => {
+                    if(parsedResponse.id_token){
+                        console.log('refresh token worked')
+                        dispatch(authStoreToken(parsedResponse.id_token, parsedResponse.expires_in, parsedResponse.refresh_token))
+                        return parsedResponse.id_token
+                    } else {
+                        dispatch(authClearStorage())
+                    }
+                })
         })
-        return promise
+            .then(token => {
+                if(!token){
+                    throw (new Error())
+                } else {
+                    return token
+                }
+            })
     }
 }
 
