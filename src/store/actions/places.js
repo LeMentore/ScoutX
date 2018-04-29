@@ -4,17 +4,22 @@ import { authGetToken } from './auth'
 
 export const addPlace = (placeName, location, image) => {
     return dispatch => {
+        let authToken
         dispatch(uiStartLoading())
         dispatch(authGetToken())
             .catch(() => {
                 alert('No valid token found')
             })
             .then(token => {
+                authToken = token
                 return fetch('https://us-central1-scoutx-1523612790305.cloudfunctions.net/storeImage', {
                     method: 'POST',
                     body: JSON.stringify({
                         image: image.base64
-                    })
+                    }),
+                    headers: {
+                        'Authorization': 'Bearer ' + authToken
+                    }
                 })
             })
             .catch(error => {
@@ -29,7 +34,7 @@ export const addPlace = (placeName, location, image) => {
                     location: location,
                     image: parsedResponse.imageUrl
                 }
-                return fetch('https://scoutx-1523612790305.firebaseio.com/places.json', {
+                return fetch(`https://scoutx-1523612790305.firebaseio.com/places.json?auth=${authToken}`, {
                     method: 'POST',
                     body: JSON.stringify(placeData)
                 })
