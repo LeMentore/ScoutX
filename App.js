@@ -15,10 +15,10 @@ Navigation.registerComponent('scout-x.AuthScreen', () => AuthScreen, store, Prov
 Navigation.registerComponent('scout-x.SharePlaceScreen', () => SharePlaceScreen, store, Provider)
 Navigation.registerComponent('scout-x.FindPlaceScreen', () => FindPlaceScreen, store, Provider)
 Navigation.registerComponent('scout-x.PlaceDetailScreen', () => PlaceDetailScreen, store, Provider)
-Navigation.registerComponent('scout-x.SideDrawer', () => SideDrawer)
+Navigation.registerComponent('scout-x.SideDrawer', () => SideDrawer, store, Provider)
 
 // Start App
-Navigation.startSingleScreenApp({
+export default () => Navigation.startSingleScreenApp({
     screen: {
         screen: 'scout-x.AuthScreen',
         title: 'Login'
