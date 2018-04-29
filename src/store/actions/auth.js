@@ -2,7 +2,7 @@ import { AsyncStorage } from 'react-native'
 import { AUTH_SET_TOKEN, AUTH_REMOVE_TOKEN } from './actionTypes'
 import { uiStartLoading, uiCompleteLoading } from './ui'
 import startMainTabs from '../../screens/MainTabs/startMainTabs'
-import App from '/App'
+import App from '../../../App'
 
 const API_KEY = 'AIzaSyA0594HwEhXIp2M7nsKYDfS1VjvTRocJeE'
 

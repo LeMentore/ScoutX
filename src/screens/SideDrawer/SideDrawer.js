@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
     }
 })
 
-const mapDispatchToProps = () => {
+const mapDispatchToProps = dispatch => {
     return {
         onLogout: () => dispatch(authLogout())
     }
