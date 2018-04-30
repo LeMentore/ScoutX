@@ -1,6 +1,12 @@
-import { SET_PLACES, DELETE_PLACE } from './actionTypes'
+import { SET_PLACES, DELETE_PLACE, PLACE_ADDED, START_ADD_PLACE } from './actionTypes'
 import { uiStartLoading, uiCompleteLoading } from './ui'
 import { authGetToken } from './auth'
+
+export const startAddPlace = () => {
+    return {
+        type: START_ADD_PLACE
+    }
+}
 
 export const addPlace = (placeName, location, image) => {
     return dispatch => {
@@ -43,12 +49,19 @@ export const addPlace = (placeName, location, image) => {
             .then(parsedResponse => {
                 console.log(parsedResponse)
                 dispatch(uiCompleteLoading())
+                dispatch(placeAdded())
             })
             .catch(error => {
                 console.log(error)
                 alert('Something went wrong... Please try again')
                 dispatch(uiCompleteLoading())
             })
+    }
+}
+
+export const placeAdded = () => {
+    return{
+        type: PLACE_ADDED
     }
 }
 
