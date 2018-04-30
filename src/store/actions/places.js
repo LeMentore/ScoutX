@@ -33,7 +33,13 @@ export const addPlace = (placeName, location, image) => {
                 alert('Something went wrong... Please try again')
                 dispatch(uiCompleteLoading())
             })
-            .then(response => response.json())
+            .then(response => {
+                if(response.ok){
+                    return response.json()
+                } else {
+                    throw new Error()
+                }
+            })
             .then(parsedResponse => {
                 const placeData = {
                     name: placeName,
@@ -45,7 +51,13 @@ export const addPlace = (placeName, location, image) => {
                     body: JSON.stringify(placeData)
                 })
             })
-            .then(response => response.json())
+            .then(response => {
+                if(response.ok){
+                    return response.json()
+                } else {
+                    throw new Error()
+                }
+            })
             .then(parsedResponse => {
                 console.log(parsedResponse)
                 dispatch(uiCompleteLoading())
@@ -74,7 +86,13 @@ export const getPlaces = () => {
             .catch(() => {
                 alert('No valid token found')
             })
-            .then(response => response.json())
+            .then(response => {
+                if(response.ok){
+                    return response.json()
+                } else {
+                    throw new Error()
+                }
+            })
             .then(parsedResponse => {
                 const places = []
                 for(let key in parsedResponse){
@@ -114,7 +132,13 @@ export const deletePlace = (key) => {
                     method: "DELETE"
                 })
             })
-            .then(response => response.json())
+            .then(response => {
+                if(response.ok){
+                    return response.json()
+                } else {
+                    throw new Error()
+                }
+            })
             .then(parsedResponse => {
                 console.log("Done!")
             })

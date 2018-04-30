@@ -31,7 +31,13 @@ export const tryAuth = (authData, authMode) => {
                 alert('Auth failed. Try Again...')
                 dispatch(uiCompleteLoading())
             })
-            .then(response => response.json())
+            .then(response => {
+                if(response.ok){
+                    return response.json()
+                } else {
+                    throw new Error()
+                }
+            })
             .then(parsedResponse => {
                 dispatch(uiCompleteLoading())
                 if(!parsedResponse.idToken){
@@ -107,7 +113,13 @@ export const authGetToken = () => {
                         body: `grant_type=refresh_token&refresh_token=${refreshToken}`
                     })
                 })
-                .then(response => response.json())
+                .then(response => {
+                    if(response.ok){
+                        return response.json()
+                    } else {
+                        throw new Error()
+                    }
+                })
                 .then(parsedResponse => {
                     if(parsedResponse.id_token){
                         console.log('refresh token worked')
