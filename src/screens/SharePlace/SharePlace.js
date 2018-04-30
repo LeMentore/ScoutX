@@ -16,29 +16,35 @@ class SharePlaceScreen extends Component {
         this.props.navigator.setOnNavigatorEvent(this.onNavigatorEvent)
     }
 
-    state = {
-        controls: {
-            placeName: {
-                value: "",
-                valid: false,
-                touched: false,
-                validationRules: {
-                    notEmpty: true
-                }
-            },
-            location: {
-                value: null,
-                valid: false
-            },
-            image: {
-                value: null,
-                valid: false
-            }
-        }
-    }
-
     static navigatorStyle = {
         navBarButtonColor: '#1289c5'
+    }
+
+    componentWillMount(){
+        this.reset()
+    }
+
+    reset = () => {
+        this.setState({
+            controls: {
+                placeName: {
+                    value: "",
+                    valid: false,
+                    touched: false,
+                    validationRules: {
+                        notEmpty: true
+                    }
+                },
+                location: {
+                    value: null,
+                    valid: false
+                },
+                image: {
+                    value: null,
+                    valid: false
+                }
+            }
+        })
     }
 
     onNavigatorEvent = event => {
@@ -101,6 +107,9 @@ class SharePlaceScreen extends Component {
             this.state.controls.location.value,
             this.state.controls.image.value
         )
+        this.reset()
+        this.imagePicker.reset()
+        this.locationPicker.reset()
     }
 
     render(){
@@ -121,8 +130,8 @@ class SharePlaceScreen extends Component {
                         <HeadingText style={styles.header}>Share place with us!</HeadingText>
                     </MainText>
 
-                    <PickImage onImagePicked={this.imagePickerHandler} />
-                    <PickLocation onLocationPick={this.locationPickHandler} />
+                    <PickImage onImagePicked={this.imagePickerHandler} ref={ref => (this.imagePicker = ref)} />
+                    <PickLocation onLocationPick={this.locationPickHandler} ref={ref => (this.locationPicker = ref)} />
                     <PlaceInput placeName={this.state.placeName} onChangeText={this.placeNameChangedHandler} />
 
                     <View style={styles.button}>
