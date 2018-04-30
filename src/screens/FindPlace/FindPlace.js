@@ -17,15 +17,19 @@ class FindPlaceScreen extends Component {
         placesAnimation: new Animated.Value(0)
     }
 
-    componentDidMount(){
-        this.props.onLoadPlaces()
-    }
-
     static navigatorStyle = {
         navBarButtonColor: '#1289c5'
     }
 
     onNavigatorEvent = event => {
+        if(event.type === 'ScreenChangedEvent'){
+            if(event.id === 'willAppear'){
+                this.props.onLoadPlaces()
+                // this.setState({
+                //     placesLoaded: false
+                // })
+            }
+        }
         if(event.type === 'NavBarButtonPress'){
             if(event.id === 'sideDrawerToggle'){
                 this.props.navigator.toggleDrawer({
