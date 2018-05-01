@@ -47,6 +47,10 @@ class AuthScreen extends Component {
         }
     }
 
+    static navigatorStyle = {
+        navBarHidden: true
+    };
+
     componentWillUnmount(){
         Dimensions.removeEventListener('change', this.updateStyles)
     }
