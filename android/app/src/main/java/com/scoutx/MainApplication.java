@@ -12,6 +12,7 @@ import com.oblador.vectoricons.VectorIconsPackage;
 import com.reactnativenavigation.NavigationApplication;
 import com.airbnb.android.react.maps.MapsPackage;
 import com.imagepicker.ImagePickerPackage;
+import com.brentvatne.react.ReactVideoPackage;
 
 import java.util.Arrays;
 import java.util.List;
@@ -27,7 +28,8 @@ public class MainApplication extends NavigationApplication {
          return Arrays.<ReactPackage>asList(
              new VectorIconsPackage(),
              new MapsPackage(),
-             new ImagePickerPackage()
+             new ImagePickerPackage(),
+             new ReactVideoPackage()
          );
      }
 
