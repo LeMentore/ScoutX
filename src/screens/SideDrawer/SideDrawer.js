@@ -11,7 +11,7 @@ class SideDrawer extends Component {
                 <TouchableOpacity onPress={this.props.onLogout}>
                     <View style={styles.drawerItem}>
                         <Icon name="ios-log-out" size={30} color="#aaa" style={styles.drawerItemIcon} />
-                        <Text>Sign Out</Text>
+                        <Text>Выйти отсюда</Text>
                     </View>
                 </TouchableOpacity>
             </View>

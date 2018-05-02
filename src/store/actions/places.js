@@ -30,7 +30,7 @@ export const addPlace = (placeName, location, image) => {
             })
             .catch(error => {
                 console.log(error)
-                alert('Something went wrong... Please try again')
+                alert('Потрачено! Пробуй повторить...')
                 dispatch(uiCompleteLoading())
             })
             .then(response => {
@@ -108,7 +108,7 @@ export const getPlaces = () => {
                 dispatch(setPlaces(places))
             })
             .catch(error => {
-                alert('Something went wrong, sorry...')
+                alert('Потрачено! Пробуй повторить...')
                 console.log(error)
             })
     }
@@ -144,7 +144,7 @@ export const deletePlace = (key) => {
                 console.log("Done!")
             })
             .catch(err => {
-                alert("Something went wrong, sorry...")
+                alert("Потрачено! Пробуй повторить...")
                 console.log(err);
             })
     }

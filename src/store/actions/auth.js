@@ -28,7 +28,7 @@ export const tryAuth = (authData, authMode) => {
         })
             .catch(error => {
                 console.log(error)
-                alert('Auth failed. Try Again...')
+                alert('Потрачено! Пробуй повторить...')
                 dispatch(uiCompleteLoading())
             })
             .then(response => {
@@ -41,7 +41,7 @@ export const tryAuth = (authData, authMode) => {
             .then(parsedResponse => {
                 dispatch(uiCompleteLoading())
                 if(!parsedResponse.idToken){
-                    alert('Auth failed. Try Again...')
+                    alert('Потрачено! Пробуй повторить...')
                 } else {
                     dispatch(authStoreToken(parsedResponse.idToken, parsedResponse.expiresIn, parsedResponse))
                     startMainTabs()

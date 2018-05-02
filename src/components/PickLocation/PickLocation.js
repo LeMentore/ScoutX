@@ -56,7 +56,7 @@ class PickLocation extends Component {
         },
             error => {
                 console.log(error)
-                alert('Loading the Position failed!')
+                alert('Загрузка местоположения не удалась')
             })
     }
 
@@ -75,7 +75,7 @@ class PickLocation extends Component {
                     {marker}
                 </MapView>
                 <View style={styles.button}>
-                    <Button title="Locate Me" onPress={this.getLocationHandler} />
+                    <Button title="Найти меня" onPress={this.getLocationHandler} />
                 </View>
             </View>
         )

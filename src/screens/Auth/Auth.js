@@ -132,21 +132,21 @@ class AuthScreen extends Component {
                                       !this.state.controls.email.valid ||
                                       !this.state.controls.password.valid
                                   }>
-                Submit
+                Войти
             </ButtonWithBackground>
         )
 
         if(this.state.viewMode === 'portrait'){
             headingText = (
                 <MainText>
-                    <HeadingText>Please Log In</HeadingText>
+                    <HeadingText>{this.state.authMode === 'login' ? 'Авторизация' : 'Регистрация'}</HeadingText>
                 </MainText>
             )
         }
         if(this.state.authMode === 'signup'){
             confirmPasswordControl = (
                 <View style={this.state.viewMode === 'portrait' ? styles.portraitPasswordWrapper : styles.landscapePasswordWrapper}>
-                    <DefaultInput placeholder="Confirm Password" style={styles.input}
+                    <DefaultInput placeholder="Нука повтори..." style={styles.input}
                                   value={this.state.controls.confirmPassword.value}
                                   onChangeText={(value) => this.updateInputState('confirmPassword', value)}
                                   valid={this.state.controls.confirmPassword.valid}
@@ -166,12 +166,12 @@ class AuthScreen extends Component {
                 <ButtonWithBackground color="#29aaf4"
                                       onPress={this.switchAuthModeHandler}
                 >
-                    Switch to {this.state.authMode === 'login' ? 'Sign Up' : 'Login'}
+                    К {this.state.authMode === 'login' ? 'регистрации' : 'авторизации'}
                 </ButtonWithBackground>
 
                 <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                     <View style={styles.inputContainer}>
-                        <DefaultInput placeholder="Your Email" style={styles.input}
+                        <DefaultInput placeholder="Твоё мыло" style={styles.input}
                                       value={this.state.controls.email.value}
                                       onChangeText={(value) => this.updateInputState('email', value)}
                                       valid={this.state.controls.email.valid}
@@ -186,7 +186,7 @@ class AuthScreen extends Component {
                                 ? styles.portraitPasswordWrapper
                                 : styles.landscapePasswordWrapper
                             }>
-                                <DefaultInput placeholder="Password" style={styles.input}
+                                <DefaultInput placeholder="Пароль" style={styles.input}
                                               value={this.state.controls.password.value}
                                               onChangeText={(value) => this.updateInputState('password', value)}
                                               valid={this.state.controls.password.valid}

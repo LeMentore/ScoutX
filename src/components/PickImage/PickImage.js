@@ -14,7 +14,7 @@ class PickImage extends Component {
     }
 
     pickImageHandler = () => {
-        ImagePicker.showImagePicker({title: 'Pick an Image', maxWidth: 800, maxHeight: 600}, response => {
+        ImagePicker.showImagePicker({title: 'Прикрепить фото', maxWidth: 800, maxHeight: 600}, response => {
             if(response.didCancel){
                 console.log('User canceled!')
             } else if(response.error){
@@ -35,7 +35,7 @@ class PickImage extends Component {
                     <Image source={this.state.pickedImage} style={styles.previewImage}/>
                 </View>
                 <View style={styles.button}>
-                    <Button title="Pick Image" onPress={this.pickImageHandler} />
+                    <Button title="Прикрепить фото" onPress={this.pickImageHandler} />
                 </View>
             </View>
         )
@@ -51,8 +51,8 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         borderColor: '#000',
         backgroundColor: '#eee',
-        width: '80%',
-        height: 150
+        width: '90%',
+        height: 200
     },
     button: {
         margin: 8

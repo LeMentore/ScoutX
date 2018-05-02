@@ -13,8 +13,8 @@ const startTabs = () => {
             tabs: [
                 {
                     screen: 'scout-x.FindPlaceScreen',
-                    label: 'Find Place',
-                    title: 'Find Place',
+                    label: 'Разведано',
+                    title: 'Разведано',
                     icon: sources[0],
                     navigatorButtons: {
                         leftButtons: [
@@ -28,8 +28,8 @@ const startTabs = () => {
                 },
                 {
                     screen: 'scout-x.SharePlaceScreen',
-                    label: 'Share Place',
-                    title: 'Share Place',
+                    label: 'Новое место',
+                    title: 'Новое место',
                     icon: sources[1],
                     navigatorButtons: {
                         leftButtons: [

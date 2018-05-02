@@ -128,7 +128,7 @@ class SharePlaceScreen extends Component {
 
     render(){
         let submitButton = (
-            <Button title="Share the place" onPress={this.placeAddedHandler}
+            <Button title="Сохранить место" onPress={this.placeAddedHandler}
                     disabled={!this.state.controls.placeName.valid
                     || !this.state.controls.location.valid
                     || !this.state.controls.image.valid} />
@@ -141,7 +141,7 @@ class SharePlaceScreen extends Component {
             <ScrollView>
                 <View style={styles.container}>
                     <MainText>
-                        <HeadingText style={styles.header}>Share place with us!</HeadingText>
+                        <HeadingText style={styles.header}>Разведка нового места!</HeadingText>
                     </MainText>
 
                     <PickImage onImagePicked={this.imagePickerHandler} ref={ref => (this.imagePicker = ref)} />
@@ -158,6 +158,9 @@ class SharePlaceScreen extends Component {
 }
 
 const styles = StyleSheet.create({
+    header: {
+        color: '#000'
+    },
     container: {
         flex: 1,
         alignItems: "center"
