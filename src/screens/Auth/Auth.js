@@ -38,7 +38,8 @@ class AuthScreen extends Component {
                 validationRules: {
                     minLength: 6
                 },
-                touched: false
+                touched: false,
+                error: null
             },
             confirmPassword: {
                 value: '',
@@ -46,7 +47,8 @@ class AuthScreen extends Component {
                 validationRules: {
                     equalTo: 'password'
                 },
-                touched: false
+                touched: false,
+                error: null
             }
         }
     }
@@ -123,14 +125,14 @@ class AuthScreen extends Component {
         })
     }
 
-    checkError = () => {
+    checkError = (key, errorText) => {
         this.setState(prevState => {
             return {
                 controls: {
                     ...prevState.controls,
-                    email: {
-                        ...prevState.controls.email,
-                        error: prevState.controls.email.valid ? '' : 'Неверный ящик'
+                    [key]: {
+                        ...prevState.controls[key],
+                        error: prevState.controls[key].valid ? '' : errorText
                     }
                 }
             }
@@ -159,15 +161,18 @@ class AuthScreen extends Component {
                 </MainText>
             )
         }
-        if(this.state.authMode === 'signup'){
+        if (this.state.authMode === 'signup') {
             confirmPasswordControl = (
-                <View style={this.state.viewMode === 'portrait' ? styles.portraitPasswordWrapper : styles.landscapePasswordWrapper}>
-                    <DefaultInput placeholder="Нука повтори..." style={styles.input}
-                                  value={this.state.controls.confirmPassword.value}
-                                  onChangeText={(value) => this.updateInputState('confirmPassword', value)}
-                                  valid={this.state.controls.confirmPassword.valid}
-                                  touched={this.state.controls.confirmPassword.touched}
-                                  secureTextEntry
+                <View
+                    style={this.state.viewMode === 'portrait' ? styles.portraitPasswordWrapper : styles.landscapePasswordWrapper}>
+                    <MaterialInput label="Нука повтори..."
+                                   value={this.state.controls.confirmPassword.value}
+                                   onChangeText={(value) => this.updateInputState('confirmPassword', value)}
+                                   onBlur={() => this.checkError('confirmPassword', 'Пароль повтори')}
+                                   valid={this.state.controls.confirmPassword.valid}
+                                   error={this.state.controls.confirmPassword.error}
+                                   touched={this.state.controls.confirmPassword.touched}
+                                   secureTextEntry
                     />
                 </View>
             )
@@ -188,13 +193,13 @@ class AuthScreen extends Component {
                 <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                     <View style={styles.inputContainer}>
                         <MaterialInput label="Твой ящик"
-                                      value={this.state.controls.email.value}
-                                      onChangeText={(value) => this.updateInputState('email', value)}
-                                       onBlur={() => this.checkError()}
-                                      valid={this.state.controls.email.valid}
+                                       value={this.state.controls.email.value}
+                                       onChangeText={(value) => this.updateInputState('email', value)}
+                                       onBlur={() => this.checkError('email', 'Неверный ящик')}
+                                       valid={this.state.controls.email.valid}
                                        error={this.state.controls.email.error}
-                                      touched={this.state.controls.email.touched}
-                                      autoCapitalize="none" autoCorrect={false} keyboardType="email-address"
+                                       touched={this.state.controls.email.touched}
+                                       autoCapitalize="none" autoCorrect={false} keyboardType="email-address"
                         />
                         <View style={this.state.viewMode === 'portrait' || this.state.authMode === 'login'
                             ? styles.portraitPasswordContainer
@@ -204,12 +209,14 @@ class AuthScreen extends Component {
                                 ? styles.portraitPasswordWrapper
                                 : styles.landscapePasswordWrapper
                             }>
-                                <DefaultInput placeholder="Пароль" style={styles.input}
-                                              value={this.state.controls.password.value}
-                                              onChangeText={(value) => this.updateInputState('password', value)}
-                                              valid={this.state.controls.password.valid}
-                                              touched={this.state.controls.password.touched}
-                                              secureTextEntry
+                                <MaterialInput label="Пароль"
+                                               value={this.state.controls.password.value}
+                                               onChangeText={(value) => this.updateInputState('password', value)}
+                                               onBlur={() => this.checkError('password', 'Еще короче, не? У тебя комплексы?')}
+                                               valid={this.state.controls.password.valid}
+                                               error={this.state.controls.password.error}
+                                               touched={this.state.controls.password.touched}
+                                               secureTextEntry
                                 />
                             </View>
                             {confirmPasswordControl}

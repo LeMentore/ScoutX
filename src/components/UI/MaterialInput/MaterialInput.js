@@ -15,8 +15,8 @@ const styles = StyleSheet.create({
 
     },
     invalid: {
-        backgroundColor: 'red',
-        opacity: .5,
+        backgroundColor: '#e91e63',
+        opacity: .1,
     }
 })
 
