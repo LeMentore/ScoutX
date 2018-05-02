@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import Video from 'react-native-video'
 
 import DefaultInput from '../../components/UI/DefaultInput/DefaultInput'
+import MaterialInput from '../../components/UI/MaterialInput/MaterialInput'
 import HeadingText from '../../components/UI/HeadingText/HeadingText'
 import MainText from '../../components/UI/MainText/MainText'
 import ButtonWithBackground from '../../components/UI/ButtonWithBackground/ButtonWithBackground'
@@ -28,7 +29,8 @@ class AuthScreen extends Component {
                 validationRules: {
                     isEmail: true
                 },
-                touched: false
+                touched: false,
+                error: null
             },
             password: {
                 value: '',
@@ -121,11 +123,25 @@ class AuthScreen extends Component {
         })
     }
 
+    checkError = () => {
+        this.setState(prevState => {
+            return {
+                controls: {
+                    ...prevState.controls,
+                    email: {
+                        ...prevState.controls.email,
+                        error: prevState.controls.email.valid ? '' : 'Неверный ящик'
+                    }
+                }
+            }
+        })
+    }
+
     render() {
         let headingText = null
         let confirmPasswordControl = null
         let submitButton = (
-            <ButtonWithBackground color="#29aaf4"
+            <ButtonWithBackground color="#e91e63"
                                   onPress={this.authHandler}
                                   disabled={
                                       !this.state.controls.confirmPassword.valid && this.state.authMode === 'signup' ||
@@ -163,7 +179,7 @@ class AuthScreen extends Component {
             <KeyboardAvoidingView style={styles.container} behavior="padding">
                 <Video repeat source={bgVideo} resizeMode="cover" style={StyleSheet.absoluteFill}/>
                 {headingText}
-                <ButtonWithBackground color="#29aaf4"
+                <ButtonWithBackground color="#e91e63"
                                       onPress={this.switchAuthModeHandler}
                 >
                     К {this.state.authMode === 'login' ? 'регистрации' : 'авторизации'}
@@ -171,10 +187,12 @@ class AuthScreen extends Component {
 
                 <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                     <View style={styles.inputContainer}>
-                        <DefaultInput placeholder="Твоё мыло" style={styles.input}
+                        <MaterialInput label="Твой ящик"
                                       value={this.state.controls.email.value}
                                       onChangeText={(value) => this.updateInputState('email', value)}
+                                       onBlur={() => this.checkError()}
                                       valid={this.state.controls.email.valid}
+                                       error={this.state.controls.email.error}
                                       touched={this.state.controls.email.touched}
                                       autoCapitalize="none" autoCorrect={false} keyboardType="email-address"
                         />
