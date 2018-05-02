@@ -1,9 +1,8 @@
 import React, { Component } from 'react'
-import { View, StyleSheet, ImageBackground, Dimensions, KeyboardAvoidingView, Keyboard, TouchableWithoutFeedback, ActivityIndicator } from 'react-native'
+import { View, StyleSheet, Dimensions, KeyboardAvoidingView, Keyboard, TouchableWithoutFeedback, ActivityIndicator } from 'react-native'
 import { connect } from 'react-redux'
 import Video from 'react-native-video'
 
-import DefaultInput from '../../components/UI/DefaultInput/DefaultInput'
 import MaterialInput from '../../components/UI/MaterialInput/MaterialInput'
 import HeadingText from '../../components/UI/HeadingText/HeadingText'
 import MainText from '../../components/UI/MainText/MainText'
@@ -192,7 +191,7 @@ class AuthScreen extends Component {
 
                 <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                     <View style={styles.inputContainer}>
-                        <MaterialInput label="Твой ящик"
+                        <MaterialInput label="Твой ящик" style={styles.input}
                                        value={this.state.controls.email.value}
                                        onChangeText={(value) => this.updateInputState('email', value)}
                                        onBlur={() => this.checkError('email', 'Неверный ящик')}
@@ -212,7 +211,7 @@ class AuthScreen extends Component {
                                 <MaterialInput label="Пароль"
                                                value={this.state.controls.password.value}
                                                onChangeText={(value) => this.updateInputState('password', value)}
-                                               onBlur={() => this.checkError('password', 'Еще короче, не? У тебя комплексы?')}
+                                               onBlur={() => this.checkError('password', 'Слишком короткий, как твой, наверное...')}
                                                valid={this.state.controls.password.valid}
                                                error={this.state.controls.password.error}
                                                touched={this.state.controls.password.touched}
@@ -243,8 +242,7 @@ const styles = StyleSheet.create({
         flex: 1
     },
     input: {
-        backgroundColor: '#eee',
-        borderColor: '#bbb'
+        color: '#e91e63'
     },
     landscapePasswordWrapper: {
         width: '48%'

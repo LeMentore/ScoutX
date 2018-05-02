@@ -11,12 +11,12 @@ const MaterialInput = props => (
 
 const styles = StyleSheet.create({
     input: {
-        width: '100%',
-
+        width: '100%'
     },
     invalid: {
-        backgroundColor: '#e91e63',
-        opacity: .1,
+        color: '#e91e63',
+        backgroundColor: 'rgba(233, 30, 99, 0.1)',
+        height: '100%'
     }
 })
 
