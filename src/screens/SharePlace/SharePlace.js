@@ -17,7 +17,7 @@ class SharePlaceScreen extends Component {
     }
 
     static navigatorStyle = {
-        navBarButtonColor: '#1289c5'
+        navBarButtonColor: '#e91e63'
     }
 
     componentWillMount(){

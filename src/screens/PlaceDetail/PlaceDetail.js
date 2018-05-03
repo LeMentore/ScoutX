@@ -16,6 +16,12 @@ class PlaceDetail extends Component {
         viewMode: "portrait"
     };
 
+    static navigatorStyle = {
+        navBarBackgroundColor: '#191919',
+        navBarButtonColor: '#e91e63',
+        navBarTextColor: '#e91e63'
+    }
+
     componentWillUnmount() {
         Dimensions.removeEventListener("change", this.updateStyles);
     }
@@ -59,7 +65,7 @@ class PlaceDetail extends Component {
                     <View>
                         <TouchableOpacity onPress={this.placeDeletedHandler}>
                             <View style={styles.deleteButton}>
-                                <Icon size={30} name={Platform.OS === "android" ? "md-trash" : "ios-trash"} color="red"/>
+                                <Icon size={30} name={Platform.OS === "android" ? "md-trash" : "ios-trash"} color="#eee"/>
                             </View>
                         </TouchableOpacity>
                     </View>
@@ -71,8 +77,9 @@ class PlaceDetail extends Component {
 
 const styles = StyleSheet.create({
     container: {
-        margin: 22,
-        flex: 1
+        padding: 22,
+        flex: 1,
+        backgroundColor: '#1f1f1f'
     },
     portraitContainer: {
         flexDirection: "column"
@@ -90,7 +97,8 @@ const styles = StyleSheet.create({
     placeName: {
         fontWeight: 'bold',
         textAlign: 'center',
-        fontSize: 28
+        fontSize: 28,
+        color: '#e91e63'
     },
     map: {
         ...StyleSheet.absoluteFillObject

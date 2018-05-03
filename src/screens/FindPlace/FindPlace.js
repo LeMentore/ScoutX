@@ -18,7 +18,9 @@ class FindPlaceScreen extends Component {
     }
 
     static navigatorStyle = {
-        navBarButtonColor: '#1289c5'
+        navBarBackgroundColor: '#191919',
+        navBarButtonColor: '#e91e63',
+        navBarTextColor: '#e91e63'
     }
 
     onNavigatorEvent = event => {
@@ -100,24 +102,29 @@ class FindPlaceScreen extends Component {
                 </Animated.View>
             )
         }
-        return <View style={this.state.placesLoaded ? null : styles.buttonContainer}>{content}</View>
+        return <View style={this.state.placesLoaded ? styles.defaultContainer : styles.buttonContainer}>{content}</View>
     }
 }
 
 const styles = StyleSheet.create({
+    defaultContainer: {
+        flex: 1,
+        backgroundColor: '#1f1f1f'
+    },
     buttonContainer: {
         flex: 1,
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
+        backgroundColor: '#1f1f1f'
     },
     searchButton: {
-        borderColor: '#1289c5',
+        borderColor: '#e91e63',
         borderWidth: 2,
         borderRadius: 50,
         padding: 20
     },
     searchButtonText: {
-        color: '#1289c5',
+        color: '#e91e63',
         fontWeight: 'bold',
         fontSize: 26
     }
