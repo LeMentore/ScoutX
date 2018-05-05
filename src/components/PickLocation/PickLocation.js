@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { View, Text, Button, StyleSheet, Dimensions } from 'react-native'
 import MapView from 'react-native-maps'
+import ButtonWithBackground from '../UI/ButtonWithBackground/ButtonWithBackground'
 
 class PickLocation extends Component {
     componentWillMount(){
@@ -75,7 +76,7 @@ class PickLocation extends Component {
                     {marker}
                 </MapView>
                 <View style={styles.button}>
-                    <Button title="Найти меня" onPress={this.getLocationHandler} />
+                    <ButtonWithBackground color='#e91e63' onPress={this.getLocationHandler}>Найти меня</ButtonWithBackground>
                 </View>
             </View>
         )
@@ -88,7 +89,7 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     map: {
-        width: '100%',
+        width: '90%',
         height: 250
     },
     button: {

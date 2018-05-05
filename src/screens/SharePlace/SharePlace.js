@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
-import { View, Button, Text, StyleSheet, ScrollView, ActivityIndicator } from 'react-native'
+import { View, StyleSheet, ScrollView, ActivityIndicator } from 'react-native'
 import { connect } from 'react-redux'
 
 import { addPlace, startAddPlace } from "../../store/actions/places"
 import MainText from '../../components/UI/MainText/MainText'
 import HeadingText from '../../components/UI/HeadingText/HeadingText'
+import ButtonWithBackground from '../../components/UI/ButtonWithBackground/ButtonWithBackground'
 import PlaceInput from '../../components/PlaceInput/PlaceInput'
 import PickImage from '../../components/PickImage/PickImage'
 import PickLocation from '../../components/PickLocation/PickLocation'
@@ -17,7 +18,9 @@ class SharePlaceScreen extends Component {
     }
 
     static navigatorStyle = {
-        navBarButtonColor: '#e91e63'
+        navBarBackgroundColor: '#191919',
+        navBarButtonColor: '#e91e63',
+        navBarTextColor: '#e91e63'
     }
 
     componentWillMount(){
@@ -128,10 +131,10 @@ class SharePlaceScreen extends Component {
 
     render(){
         let submitButton = (
-            <Button title="Сохранить место" onPress={this.placeAddedHandler}
+            <ButtonWithBackground onPress={this.placeAddedHandler} color='#e91e63'
                     disabled={!this.state.controls.placeName.valid
                     || !this.state.controls.location.valid
-                    || !this.state.controls.image.valid} />
+                    || !this.state.controls.image.valid} >Сохранить место</ButtonWithBackground>
         )
 
         if (this.props.isLoading){
@@ -146,7 +149,9 @@ class SharePlaceScreen extends Component {
 
                     <PickImage onImagePicked={this.imagePickerHandler} ref={ref => (this.imagePicker = ref)} />
                     <PickLocation onLocationPick={this.locationPickHandler} ref={ref => (this.locationPicker = ref)} />
-                    <PlaceInput placeName={this.state.placeName} onChangeText={this.placeNameChangedHandler} />
+                    <View style={{width: '90%'}}>
+                        <PlaceInput placeName={this.state.placeName} onChangeText={this.placeNameChangedHandler} />
+                    </View>
 
                     <View style={styles.button}>
                         {submitButton}
@@ -159,25 +164,26 @@ class SharePlaceScreen extends Component {
 
 const styles = StyleSheet.create({
     header: {
-        color: '#000'
+        color: '#e91e63'
     },
     container: {
         flex: 1,
-        alignItems: "center"
+        alignItems: 'center',
+        backgroundColor: '#1f1f1f'
     },
     placeholder: {
         borderWidth: 1,
-        borderColor: "black",
-        backgroundColor: "#eee",
-        width: "80%",
+        borderColor: 'black',
+        backgroundColor: '#eee',
+        width: '80%',
         height: 150
     },
     button: {
         margin: 8
     },
     previewImage: {
-        width: "100%",
-        height: "100%"
+        width: '100%',
+        height: '100%'
     }
 })
 

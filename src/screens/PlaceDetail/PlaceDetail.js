@@ -82,17 +82,17 @@ const styles = StyleSheet.create({
         backgroundColor: '#1f1f1f'
     },
     portraitContainer: {
-        flexDirection: "column"
+        flexDirection: 'column'
     },
     landscapeContainer: {
-        flexDirection: "row"
+        flexDirection: 'row'
     },
     placeDetailContainer: {
         flex: 2
     },
     placeImage: {
-        width: "100%",
-        height: "100%"
+        width: '100%',
+        height: '100%'
     },
     placeName: {
         fontWeight: 'bold',

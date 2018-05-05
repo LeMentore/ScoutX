@@ -1,6 +1,6 @@
 import React from 'react'
 import { TextField } from 'react-native-material-textfield'
-import {StyleSheet} from "react-native";
+import { StyleSheet } from "react-native";
 
 const MaterialInput = props => (
     <TextField {...props}

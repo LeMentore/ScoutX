@@ -1,10 +1,10 @@
 import React from 'react'
-import DefaultInput from '../../components/UI/DefaultInput/DefaultInput'
+import MaterialInput from '../../components/UI/MaterialInput/MaterialInput'
 
 const placeInput = props => (
-    <DefaultInput placeholder="Название места"
-                  value={props.placeName}
-                  onChangeText={props.onChangeText}/>
+    <MaterialInput label="Название места"
+                   value={props.placeName}
+                   onChangeText={props.onChangeText}/>
 )
 
 export default placeInput
