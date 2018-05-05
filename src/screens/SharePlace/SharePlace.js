@@ -9,7 +9,7 @@ import ButtonWithBackground from '../../components/UI/ButtonWithBackground/Butto
 import PlaceInput from '../../components/PlaceInput/PlaceInput'
 import PickImage from '../../components/PickImage/PickImage'
 import PickLocation from '../../components/PickLocation/PickLocation'
-import validate from "../../utility/validation";
+import validate from '../../utility/validation'
 
 class SharePlaceScreen extends Component {
     constructor(props){

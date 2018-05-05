@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { View, Image, Text, StyleSheet, TouchableOpacity, Platform, Dimensions } from 'react-native'
 import Icon from 'react-native-vector-icons/Ionicons'
-import MapView from "react-native-maps";
+import MapView from 'react-native-maps'
 import { connect } from 'react-redux'
 
 import { deletePlace } from '../../store/actions/places'
@@ -13,7 +13,7 @@ class PlaceDetail extends Component {
     }
 
     state = {
-        viewMode: "portrait"
+        viewMode: 'portrait'
     };
 
     static navigatorStyle = {

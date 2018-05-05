@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, Image, Button, StyleSheet } from 'react-native'
+import { View, Image, StyleSheet } from 'react-native'
 import ImagePicker from 'react-native-image-picker'
 import ButtonWithBackground from '../UI/ButtonWithBackground/ButtonWithBackground'
 
