@@ -1,5 +1,6 @@
 import React from 'react'
 import { AppRegistry } from 'react-native'
+import { Navigation } from 'react-native-navigation'
 import { Provider } from 'react-redux'
 
 import App from './App'
@@ -13,4 +14,6 @@ const Main = () => (
     </Provider>
 )
 
-AppRegistry.registerComponent('ScoutX', () => Main)
+Navigation.registerComponent('ScoutX', () => Main)
+
+App()
