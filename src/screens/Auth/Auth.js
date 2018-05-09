@@ -156,7 +156,7 @@ class AuthScreen extends Component {
         if(this.state.viewMode === 'portrait'){
             headingText = (
                 <MainText>
-                    <HeadingText>{this.state.authMode === 'login' ? 'Авторизация' : 'Регистрация'}</HeadingText>
+                    <HeadingText>{this.state.authMode === 'login' ? 'Авторизация...' : 'Регистрация'}</HeadingText>
                 </MainText>
             )
         }
@@ -181,7 +181,7 @@ class AuthScreen extends Component {
         }
         return (
             <KeyboardAvoidingView style={styles.container} behavior="padding">
-                <Video repeat source={bgVideo} resizeMode="cover" style={StyleSheet.absoluteFill}/>
+                <Video repeat source={{uri:'background'}} resizeMode="cover" style={StyleSheet.absoluteFill}/>
                 {headingText}
                 <ButtonWithBackground color="#e91e63"
                                       onPress={this.switchAuthModeHandler}
